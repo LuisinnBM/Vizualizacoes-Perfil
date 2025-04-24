@@ -22,8 +22,9 @@ jobs:
 
     - name: Commitar mudanças
       run: |
-        git config user.name "GitHub Action"
-        git config user.email "action@github.com"
+        git config user.name "LuisinnBM"
+        git config user.email "luisbolinam@gmail.com"
         git add views.json
         git commit -m "Atualizar visualizações" || echo "Sem mudanças"
-        git push
+        git push https://${{ secrets.GH_PAT }}@github.com/LuisinnBM/Vizualizacoes-Perfil.git HEAD:main
+
