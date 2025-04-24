@@ -1,0 +1,29 @@
+name: Atualizar Visualizações
+
+on:
+  workflow_dispatch:  # Permite executar manualmente
+
+jobs:
+  update-views:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+
+    - name: Rodar script de atualização
+      run: |
+        node update.js
+
+    - name: Commitar mudanças
+      run: |
+        git config user.name "GitHub Action"
+        git config user.email "action@github.com"
+        git add views.json
+        git commit -m "Atualizar visualizações" || echo "Sem mudanças"
+        git push
